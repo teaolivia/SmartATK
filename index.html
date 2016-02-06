@@ -11,6 +11,14 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div ng-controller="sidebar-controller">
+            <menu visible="visible" alignment="left">
+            <menu-item hash="first-page">First Page></menu-item>
+            <menu-item hash="second-page">Second Page></menu-item>
+            <menu-item hash="third-page">Third Page></menu-item>
+            </menu>
+        </div>
+        <div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude>  
+        </div>
     </body>
 </html>
