@@ -20,11 +20,9 @@ app.run(function($rootScope) {
 
 app.controller("sidebar-controller", function($scope, $rootScope) {
     $scope.leftVisible = false;
-    $scope.rightVisible = false;
 
     $scope.close = function() {
         $scope.leftVisible = false;
-        $scope.rightVisible = false;
     };
 
     $scope.showLeft = function(e) {
@@ -45,7 +43,7 @@ app.controller("sidebar-controller", function($scope, $rootScope) {
 app.directive("menu", function() {
     return {
         restrict: "E",
-        template: "<div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude></div>",
+        template: "<div ng-class='{ show: visible, left: alignment === \"left\"}' ng-transclude></div>",
         transclude: true,
         scope: {
             visible: "=",

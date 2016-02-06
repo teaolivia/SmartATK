@@ -11,14 +11,15 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div ng-controller="sidebar-controller">
+        <div ng-controller="sidebar-controller" ng-class='{ show: visible, left: alignment === \"left\"}' ng-transclude>
             <menu visible="visible" alignment="left">
-            <menu-item hash="first-page">First Page></menu-item>
-            <menu-item hash="second-page">Second Page></menu-item>
-            <menu-item hash="third-page">Third Page></menu-item>
+            <menu-item hash="edit-data">Edit Data Stok></menu-item>
+            <menu-item hash="pemakaian-atk">Pemakaian ATK></menu-item>
+            <menu-item hash="lihat-data">Lihat Data></menu-item>
+            <menu-item hash="statistic">Statistik></menu-item>
             </menu>
         </div>
-        <div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude>  
+        <div>  
         </div>
     </body>
 </html>

@@ -21,10 +21,33 @@ $desc = "deskripsi";
 $dbhandle = mysql_connect($hostname, $username, $password) or die("The page requested is unavailable :(");
 
 // memilih database
-$selected = mysql_select_db("smartATK",$dbhandle) 
+$selected = mysql_select_db("smartatk",$dbhandle) 
   or die("Could not select examples");
 
 // eksekusi Query berdasarkan perintah
+$result1 = mysql_query("SELECT  nama_barang, stock FROM t_ATK");                // lihat kode barang
+$result2 = mysql_query("SELECT nama_barang FROM t_ATK");                        // lihat nama barang
+$result3 = mysql_query("SELECT stok FROM t_ATK");                               // lihat stok
+$result4 = mysql_query("INSERT INTO t_ATK VALUES (‘x’, ‘y’, ‘z’)");             // insert Data ATK
+$result5 = mysql_query("UPDATE t_ATK SET stok = stok+x WHERE kode_barang = y"); // Tambah Stok
+$result6 = mysql_query("UPDATE t_ATK SET stok = stok-x WHERE kode_barang = y"); // Kurang Stok
+$result7 = mysql_query("INSERT INTO t_pemakaian VALUES id_user, nama_user, "
+        . "             kategori_user, n_pakai, kode_barang, nama_barang, "
+        . "             tanggal");                                              // masukkan row baru pada tabel pemakaian
+$result8 = mysql_query("INSERT INTO t_user VALUES id_user, nama_user, kategori_user"); // Masukkan row baru pada Tabel User
+$result9 = mysql_query("SELECT  nama_barang, stock FROM t_ATK"); // data barang + stok
+$result10 = mysql_query("SELECT nama_user, kategori_user FROM t_user"); // data user
+$result11 = mysql_query("SELECT nama_barang, nama_user, n_pakai FROM t_pemakaian "
+        . "             ORDER BY nama_user DESC"); // data pemakaian
+$result12 = mysql_query("SELECT a.kode_barang, a.nama_barang, stok_minimum FROM 
+            (SELECT kode_barang, nama_barang FROM t_atk) AS a JOIN (SELECT kode_
+            barang, sum(n_pakai) as stok_minimum FROM t_pemakaian GROUP BY 
+                    kode_barang) AS b ON a.kode_barang=b.kode_barang"); // stok minimum???
+$result13 = mysql_query("SELECT id_user, nama_user, kategori_user, nama_barang, n_pakai, deskripsi, "
+        . "             tanggal FROM `t_pemakaian` WHERE nama_user=x"); // pemakaian ATK per user
+$result14 = mysql_query("SELECT kode_barang, nama_barang, sum(n_pakai) as "
+        . "'jumlah pemakaian' FROM `t_pemakaian` WHERE tanggal<x  and tanggal>y "
+        . "GROUP BY kode_barang"); // pemakaian ATK per periode
 
 // fetch data dari database
 
