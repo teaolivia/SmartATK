@@ -63,7 +63,7 @@ and open the template in the editor.
                 <div class="col-xs-12 col-sm-9">
                     <div class="row row-content">
                         <div class="col-xs-12">
-                            <h2 style="padding-bottom : 20px; margin:0px;">Lihat Data</h2>
+                            <h2>Lihat Data</h2>
                         </div>
                         <div class="col-xs-12 col-sm-4" style="text-align:center;">
                             <a href="#"><button class="btn btn-primary">ATK</button></a>
