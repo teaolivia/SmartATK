@@ -26,6 +26,12 @@ body{
 	text-align: right;
 	color: #FFFFFF;
 }
+
 p {
 	text-align: center;
+}
+
+h2 {
+	padding-bottom : 50px;
+	margin:0px;
 }

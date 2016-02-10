@@ -63,8 +63,33 @@ and open the template in the editor.
                 </div>
                 <div class="col-xs-12 col-sm-9">
                     <div class="row row-content">
-                        <div class="col-xs-12" style="text-align:center;">
-                            <a href="#"><button class="btn btn-primary btn-lg">Pemakaian</button></a>
+                        <div class="col-xs-12">
+                            <h2>Pemakaian ATK</h2>
+                            <form class="form-horizontal" action="#" method="post">
+                                <div class="form-group">
+                                    <label for="username" class="col-sm-3 control-label">Nama Pengguna</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="username" placeholder="Username">
+                                    </div>  
+                                </div>
+                                <div class="form-group">
+                                    <label for="userID" class="col-sm-3 control-label">Nomor Pengguna</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="userID" placeholder="User ID">
+                                    </div>  
+                                </div>
+                                <div class="form-group">
+                                    <label for="category" class="col-sm-3 control-label">Kategori User</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="Category" placeholder="User Category">
+                                    </div>  
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12 col-sm-offset-7 col-sm-2">
+                                      <button type="submit" class="btn btn-default"><img src="img/submit.png" style="width:24px;height:24px;"/></button>
+                                    </div>
+                                  </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -78,7 +103,7 @@ and open the template in the editor.
                     <p> Sarana dan Prasarana Institut Teknologi Bandung </p>
                 </div>            
                 <div class ="col-xs-12 col-sm-4">
-                    <p> Copyright 2016. Sofspot Software House </p>
+                    <p> Copyright 2016.</br>Sofspot Software House </p>
                 </div>
             </div>
         </div>
