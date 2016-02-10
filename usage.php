@@ -55,7 +55,7 @@ and open the template in the editor.
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav nav-pills nav-stacked na">
                             <li><a href="editstock.php">Edit Data Stok</a></li>
-                            <li><a href="usage.php">Pemakaian ATK</a></li>
+                            <li class="active"><a href="usage.php">Pemakaian ATK</a></li>
                             <li><a href="data.php">Lihat Data</a></li>
                             <li><a href="stats.php">Statistik</a></li>
                         </ul>
@@ -64,7 +64,7 @@ and open the template in the editor.
                 <div class="col-xs-12 col-sm-9">
                     <div class="row row-content">
                         <div class="col-xs-12" style="text-align:center;">
-                            <a href="#"><button class="btn btn-primary btn-lg">Pakai ATK!</button></a>
+                            <a href="#"><button class="btn btn-primary btn-lg">Pemakaian</button></a>
                         </div>
                     </div>
                 </div>
