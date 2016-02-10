@@ -62,10 +62,23 @@ and open the template in the editor.
                 </div>
                 <div class="col-xs-12 col-sm-9">
                     <div class="row row-content">
-                        <div class="col-xs-12" style="text-align:center;">
-                            <a href="#"><button class="btn btn-primary btn-lg">Lihat Data</button></a>
+                        <div class="col-xs-12">
+                            <h2 style="padding-bottom : 20px; margin:0px;">Lihat Data</h2>
+                        </div>
+                        <div class="col-xs-12 col-sm-4" style="text-align:center;">
+                            <a href="#"><button class="btn btn-primary">ATK</button></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-4" style="text-align:center;">
+                            <a href="#"><button class="btn btn-primary">User</button></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-4" style="text-align:center;">
+                            <a href="#"><button class="btn btn-primary">Pemakaian</button></a>
+                        </div>
+                        <div class="col-xs-12">
+                            <h3> Data Result Here </h2>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="row row-footer">
@@ -73,11 +86,11 @@ and open the template in the editor.
                     
                 </div>
                 <div class ="col-xs-12 col-sm-4">
-                    <p>Sistem Informasi ATK </p>
+                    <p style="text-align:center;">Sistem Informasi ATK </p>
                     <p> Sarana dan Prasarana Institut Teknologi Bandung </p>
                 </div>            
                 <div class ="col-xs-12 col-sm-4">
-                    <p> Copyright 2016. Sofspot Software House </p>
+                    <p> Copyright 2016.</br> Sofspot Software House </p>
                 </div>
             </div>
         </div>

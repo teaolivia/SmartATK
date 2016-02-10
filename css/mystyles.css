@@ -1,17 +1,12 @@
 .row-header {
 	background-color: black;
-	margin:0px auto;
-	padding:0px auto;
-}
-
-.row-header {
-	margin:0px auto;
+	margin:0px auto 25px auto;
 	padding:0px auto;
 }
 
 .row-content {
 	margin:0px auto;
-	padding: 25px 0px 50px 0px;
+	padding: 0px 0px 50px 0px;
 	border-bottom : 1px ridge;
 	min-height:400px;
 }
@@ -30,4 +25,7 @@ body{
 #title {
 	text-align: right;
 	color: #FFFFFF;
+}
+p {
+	text-align: center;
 }
