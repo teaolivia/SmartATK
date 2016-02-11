@@ -19,9 +19,8 @@ and open the template in the editor.
 
         <!-- Latest compiled and minified JavaScript 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-
         -->
+
         <!-- If you are offline, uncomment this part -->
         <!-- CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -36,18 +35,6 @@ and open the template in the editor.
 
     </head>
     <body>
-<<<<<<< HEAD
-        <div ng-controller="sidebar-controller" ng-class='{ show: visible, left: alignment === \"left\"}' ng-transclude>
-            <menu>
-            <menuitem alignment="left"></menuitem>>
-            <menuitem a href="edit-data">Edit Data Stok></menuitem>
-            <menuitem a href="pemakaian-atk">Pemakaian ATK></menuitem>
-            <menuitem a href="lihat-data">Lihat Data></menuitem>
-            <menuitem hash="statistic">Statistik></menuitem>
-            </menu>
-        </div>
-        <div class="main-screen">  
-=======
         <div class="container">
             <div class ="row row-header">
                 <div class="col-xs-12 col-sm-4 col-sm-offset-8">
@@ -68,17 +55,30 @@ and open the template in the editor.
                         <ul class="nav nav-pills nav-stacked na">
                             <li><a href="editstock.php">Edit Data Stok</a></li>
                             <li><a href="usage.php">Pemakaian ATK</a></li>
-                            <li><a href="data.php">Lihat Data</a></li>
+                            <li class="active"><a href="data.php">Lihat Data</a></li>
                             <li><a href="stats.php">Statistik</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-9">
                     <div class="row row-content">
-                        <div class="col-xs-12" style="text-align:center;">
-                            <a href="#"><button class="btn btn-primary btn-lg">Pakai ATK!</button></a>
+                        <div class="col-xs-12">
+                            <h2>Lihat Data</h2>
+                        </div>
+                        <div class="col-xs-12 col-sm-4" style="text-align:center;">
+                            <a href="#"><button class="btn btn-primary">ATK</button></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-4" style="text-align:center;">
+                            <a href="#"><button class="btn btn-primary">User</button></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-4" style="text-align:center;">
+                            <a href="#"><button class="btn btn-primary">Pemakaian</button></a>
+                        </div>
+                        <div class="col-xs-12">
+                            <h3> Data Result Here </h2>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="row row-footer">
@@ -86,14 +86,13 @@ and open the template in the editor.
                     
                 </div>
                 <div class ="col-xs-12 col-sm-4">
-                    <p>Sistem Informasi ATK </p>
+                    <p style="text-align:center;">Sistem Informasi ATK </p>
                     <p> Sarana dan Prasarana Institut Teknologi Bandung </p>
                 </div>            
                 <div class ="col-xs-12 col-sm-4">
-                    <p> Copyright 2016. Sofspot Software House </p>
+                    <p> Copyright 2016.</br> Sofspot Software House </p>
                 </div>
             </div>
->>>>>>> origin/master
         </div>
     </body>
 </html>

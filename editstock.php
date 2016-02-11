@@ -19,8 +19,6 @@ and open the template in the editor.
 
         <!-- Latest compiled and minified JavaScript 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-
         -->
         <!-- If you are offline, uncomment this part -->
         <!-- CSS -->
@@ -36,18 +34,6 @@ and open the template in the editor.
 
     </head>
     <body>
-<<<<<<< HEAD
-        <div ng-controller="sidebar-controller" ng-class='{ show: visible, left: alignment === \"left\"}' ng-transclude>
-            <menu>
-            <menuitem alignment="left"></menuitem>>
-            <menuitem a href="edit-data">Edit Data Stok></menuitem>
-            <menuitem a href="pemakaian-atk">Pemakaian ATK></menuitem>
-            <menuitem a href="lihat-data">Lihat Data></menuitem>
-            <menuitem hash="statistic">Statistik></menuitem>
-            </menu>
-        </div>
-        <div class="main-screen">  
-=======
         <div class="container">
             <div class ="row row-header">
                 <div class="col-xs-12 col-sm-4 col-sm-offset-8">
@@ -66,7 +52,7 @@ and open the template in the editor.
                     </button>
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav nav-pills nav-stacked na">
-                            <li><a href="editstock.php">Edit Data Stok</a></li>
+                            <li class="active"><a href="editstock.php">Edit Data Stok</a></li>
                             <li><a href="usage.php">Pemakaian ATK</a></li>
                             <li><a href="data.php">Lihat Data</a></li>
                             <li><a href="stats.php">Statistik</a></li>
@@ -76,7 +62,7 @@ and open the template in the editor.
                 <div class="col-xs-12 col-sm-9">
                     <div class="row row-content">
                         <div class="col-xs-12" style="text-align:center;">
-                            <a href="#"><button class="btn btn-primary btn-lg">Pakai ATK!</button></a>
+                            <a href="#"><button class="btn btn-primary btn-lg">Edit Data Stock</button></a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +79,6 @@ and open the template in the editor.
                     <p> Copyright 2016. Sofspot Software House </p>
                 </div>
             </div>
->>>>>>> origin/master
         </div>
     </body>
 </html>
