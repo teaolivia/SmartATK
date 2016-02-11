@@ -12,14 +12,15 @@ and open the template in the editor.
     </head>
     <body>
         <div ng-controller="sidebar-controller" ng-class='{ show: visible, left: alignment === \"left\"}' ng-transclude>
-            <menu visible="visible" alignment="left">
-            <menu-item hash="edit-data">Edit Data Stok></menu-item>
-            <menu-item hash="pemakaian-atk">Pemakaian ATK></menu-item>
-            <menu-item hash="lihat-data">Lihat Data></menu-item>
-            <menu-item hash="statistic">Statistik></menu-item>
+            <menu>
+            <menuitem alignment="left"></menuitem>>
+            <menuitem a href="edit-data">Edit Data Stok></menuitem>
+            <menuitem a href="pemakaian-atk">Pemakaian ATK></menuitem>
+            <menuitem a href="lihat-data">Lihat Data></menuitem>
+            <menuitem hash="statistic">Statistik></menuitem>
             </menu>
         </div>
-        <div>  
+        <div class="main-screen">  
         </div>
     </body>
 </html>

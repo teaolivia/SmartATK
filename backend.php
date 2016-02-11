@@ -25,17 +25,17 @@ $selected = mysql_select_db("smartatk",$dbhandle)
   or die("Could not select examples");
 
 // eksekusi Query berdasarkan perintah
-$result1 = mysql_query("SELECT  nama_barang, stock FROM t_ATK");                // lihat kode barang
-$result2 = mysql_query("SELECT nama_barang FROM t_ATK");                        // lihat nama barang
-$result3 = mysql_query("SELECT stok FROM t_ATK");                               // lihat stok
-$result4 = mysql_query("INSERT INTO t_ATK VALUES (‘x’, ‘y’, ‘z’)");             // insert Data ATK
-$result5 = mysql_query("UPDATE t_ATK SET stok = stok+x WHERE kode_barang = y"); // Tambah Stok
-$result6 = mysql_query("UPDATE t_ATK SET stok = stok-x WHERE kode_barang = y"); // Kurang Stok
+$result1 = mysql_query("SELECT  nama_barang, stock FROM t_atk");                // lihat kode barang
+$result2 = mysql_query("SELECT nama_barang FROM t_atk");                        // lihat nama barang
+$result3 = mysql_query("SELECT stok FROM t_atk");                               // lihat stok
+$result4 = mysql_query("INSERT INTO t_atk VALUES (‘x’, ‘y’, ‘z’)");             // insert Data ATK
+$result5 = mysql_query("UPDATE t_atk SET stok = stok+x WHERE kode_barang = y"); // Tambah Stok
+$result6 = mysql_query("UPDATE t_atk SET stok = stok-x WHERE kode_barang = y"); // Kurang Stok
 $result7 = mysql_query("INSERT INTO t_pemakaian VALUES id_user, nama_user, "
         . "             kategori_user, n_pakai, kode_barang, nama_barang, "
         . "             tanggal");                                              // masukkan row baru pada tabel pemakaian
 $result8 = mysql_query("INSERT INTO t_user VALUES id_user, nama_user, kategori_user"); // Masukkan row baru pada Tabel User
-$result9 = mysql_query("SELECT  nama_barang, stock FROM t_ATK"); // data barang + stok
+$result9 = mysql_query("SELECT  nama_barang, stock FROM t_atk"); // data barang + stok
 $result10 = mysql_query("SELECT nama_user, kategori_user FROM t_user"); // data user
 $result11 = mysql_query("SELECT nama_barang, nama_user, n_pakai FROM t_pemakaian "
         . "             ORDER BY nama_user DESC"); // data pemakaian
