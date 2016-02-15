@@ -87,18 +87,19 @@ and open the template in the editor.
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $stat = "def";
+                            $data = "na";
                             if (isset($_GET["type"])) {
                                 $data = $_GET["type"];
                             }
                         ?>
 
                         <div class="col-xs-12">
-                            <h3> Data Result Here </h3> 
+                            <p style="padding-bottom:20px;"> </p>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <?php
                                         if ($data=="atk") {
+                                            echo "<h3> Data ATK dan Stok </h3>";
                                             //$atk = "SELECT nama_barang, stok FROM t_ATK";
                                             $atk = "SELECT * FROM t_ATK";
                                             $result = $conn->query($atk);
@@ -115,13 +116,14 @@ and open the template in the editor.
                                                     echo "  <td>" . $row["nama_barang"] . "</td>";
                                                     echo "  <td>" . $row["stok"] . "</td>";
                                                     echo "</tr>";
-                                                }
+                                                }   
                                             }
-                                    else {
-                                        echo "Tidak ada hasil";
-                                    }
+                                            else {
+                                                echo "<p>Tidak ada hasil</p>";
+                                            }
                                         }
                                         else if ($data=="user") {
+                                            echo "<h3> Data Pengguna </h3>";
                                             //$user= SELECT nama_user, kategori_user FROM t_user");
                                             $user= "SELECT * FROM t_user";
                                             $result = $conn->query($user);
@@ -140,10 +142,12 @@ and open the template in the editor.
                                                     echo "</tr>";
                                                 }
                                             }
-
-
+                                            else {
+                                                echo "<p>Tidak ada hasil</p>";
+                                            }
                                         }
-                                        else /*($data="usage")*/ {
+                                        else if ($data=="usage") {
+                                            echo "<h3> Data Pemakaian </h3>";
                                             $usage = "SELECT id_pemakaian, nama_barang, nama_user, n_pakai FROM t_pemakaian ORDER BY nama_user ASC";
                                             $result = $conn->query($usage);
 
@@ -162,6 +166,9 @@ and open the template in the editor.
                                                     echo "  <td>" . $row["n_pakai"] . "</td>";
                                                     echo "</tr>";
                                                 }
+                                            }
+                                            else {
+                                                echo "<p>Tidak ada hasil</p>";
                                             }
                                         }
                                     ?>
