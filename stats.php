@@ -258,10 +258,10 @@ and open the template in the editor.
                 </div>
                 <div class ="col-xs-12 col-sm-4">
                     <p>Sistem Informasi ATK </p>
-                    <p> Sarana dan Prasarana Institut Teknologi Bandung </p>
+                    <p>Sarana dan Prasarana Institut Teknologi Bandung</p>
                 </div>            
                 <div class ="col-xs-12 col-sm-4">
-                    <p> Copyright 2016. Sofspot Software House </p>
+                    <p>Copyright 2016. Softspot Software House</p>
                 </div>
             </div>
         </div>
