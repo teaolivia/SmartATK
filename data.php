@@ -148,22 +148,24 @@ and open the template in the editor.
                                         }
                                         else if ($data=="usage") {
                                             echo "<h3> Data Pemakaian </h3>";
-                                            $usage = "SELECT id_pemakaian, nama_barang, nama_user, n_pakai FROM t_pemakaian ORDER BY nama_user ASC";
+                                            $usage = "SELECT nama_barang, nama_user, n_pakai, deskripsi, tanggal FROM t_pemakaian ORDER BY nama_user ASC";
                                             $result = $conn->query($usage);
 
                                             if ($result->num_rows > 0) {
                                                 echo "<tr>";
-                                                echo "  <td>No.</td>";
                                                 echo "  <td>Nama Barang</td>";
                                                 echo "  <td>Pemakai</td>";
                                                 echo "  <td>Jumlah Pakai</td>";
+                                                echo "  <td>Deskripsi</td>";
+                                                echo "  <td>Tanggal</td>";
                                                 echo "</tr>";
                                                 while($row = $result->fetch_assoc()) {
                                                     echo "<tr>";
-                                                    echo "  <td>" . $row["id_pemakaian"] . "</td>";
                                                     echo "  <td>" . $row["nama_barang"] . "</td>";
                                                     echo "  <td>" . $row["nama_user"] . "</td>";
                                                     echo "  <td>" . $row["n_pakai"] . "</td>";
+                                                    echo "  <td>" . $row["deskripsi"] . "</td>";
+                                                    echo "  <td>" . $row["tanggal"] . "</td>";
                                                     echo "</tr>";
                                                 }
                                             }
