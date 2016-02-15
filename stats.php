@@ -45,6 +45,8 @@ and open the template in the editor.
 			});
 			});
 		</script>
+		<!-- Fusion Chart -->
+		<script src="js/fusioncharts.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
     </head>
@@ -120,18 +122,19 @@ and open the template in the editor.
 
 									if ($result->num_rows > 0) {
 										echo "<table style='width:100%'>";
-										echo "<tr>";
+										echo "<tr style='border-bottom:1pt solid black;'>";
 			                            echo "<td>Kode Barang</td>";
 			                            echo "<td>Nama Barang</td>";
 			                            echo "<td>Stok Minimum</td>";
 								        echo "</tr>";
-								        echo "<hr>";
+								        echo "<tr></tr>";
 									    while($row = $result->fetch_assoc()) {
 									        echo "<tr>";
 									        echo "<td>" . $row["kode_barang"] . "</td>";
 									        echo "<td>" . $row["nama_barang"] . "</td>";
 									        echo "<td>" . $row["stok_minimum"] . "</td>";
 									        echo "</tr>";
+									        echo "<br>";
 									    }
 									    echo "</table>";
 									}
@@ -154,35 +157,40 @@ and open the template in the editor.
 									else {
 										$start = $_POST["start"];
 										$end = $_POST["end"];
-										$name = $_POST["user_name"];
-										$per_user = "SELECT nama_user, kategori_user, nama_barang, n_pakai, deskripsi, tanggal FROM t_pemakaian WHERE tanggal>'" . $start . "' and tanggal<'" . $end . "' and nama_user='" . $name ."'";
-										$result = $conn->query($per_user);
-
-										if ($result->num_rows > 0) {
-											echo "<table style='width:100%'>";
-											echo "<tr>";
-				                            echo "<td>Nama User</td>";
-				                            echo "<td>Kategori User</td>";
-				                            echo "<td>Nama Barang</td>";
-				                            echo "<td>Jumlah Pemakaian</td>";
-				                            echo "<td>Deskripsi</td>";
-				                            echo "<td>Tanggal</td>";
-									        echo "</tr>";
-									        echo "<hr>";
-										    while($row = $result->fetch_assoc()) {
-										        echo "<tr>";
-										        echo "<td>" . $row["nama_user"] . "</td>";
-										        echo "<td>" . $row["kategori_user"] . "</td>";
-										        echo "<td>" . $row["nama_barang"] . "</td>";
-										        echo "<td>" . $row["n_pakai"] . "</td>";
-										        echo "<td>" . $row["deskripsi"] . "</td>";
-										        echo "<td>" . $row["tanggal"] . "</td>";
-										        echo "</tr>";
-										    }
-										    echo "</table>";
-										}
+										if (strtotime($end) < strtotime($start))
+											echo "Tanggal tidak valid";
 										else {
-										    echo "tidak ada hasil";
+											$name = $_POST["user_name"];
+											$per_user = "SELECT nama_user, kategori_user, nama_barang, n_pakai, deskripsi, tanggal FROM t_pemakaian WHERE tanggal>='" . $start . "' and tanggal<='" . $end . "' and nama_user='" . $name ."'";
+											$result = $conn->query($per_user);
+
+											if ($result->num_rows > 0) {
+												echo "Pemakaian ATK dari periode " . $start . " sampai " . $end . " oleh " . $name;
+												echo "<br><br>";
+												echo "<table style='width:100%'>";
+												echo "<tr style='border-bottom:1pt solid black;'>";
+					                            echo "<td>Nama User</td>";
+					                            echo "<td>Kategori User</td>";
+					                            echo "<td>Nama Barang</td>";
+					                            echo "<td>Jumlah Pemakaian</td>";
+					                            echo "<td>Deskripsi</td>";
+					                            echo "<td>Tanggal</td>";
+										        echo "<tr></tr>";
+											    while($row = $result->fetch_assoc()) {
+											        echo "<tr>";
+											        echo "<td>" . $row["nama_user"] . "</td>";
+											        echo "<td>" . $row["kategori_user"] . "</td>";
+											        echo "<td>" . $row["nama_barang"] . "</td>";
+											        echo "<td>" . $row["n_pakai"] . "</td>";
+											        echo "<td>" . $row["deskripsi"] . "</td>";
+											        echo "<td>" . $row["tanggal"] . "</td>";
+											        echo "</tr>";
+											    }
+											    echo "</table>";
+											}
+											else {
+											    echo "tidak ada hasil";
+											}
 										}
 									}
 								}
@@ -201,27 +209,39 @@ and open the template in the editor.
 									else {
 										$start = $_POST["start"];
 										$end = $_POST["end"];
-										$per_periode = "SELECT nama_barang, sum(n_pakai) as 'jumlah pemakaian' FROM t_pemakaian WHERE tanggal<'". $end . "' and tanggal>'" . $start . "' GROUP BY kode_barang";
-										$result = $conn->query($per_periode);
-										echo "<br>";
-										if ($result->num_rows > 0) {
-											echo "Pemakaian ATK dari periode " . $start . " sampai " . $end;
-											echo "<table style='width:100%'>";
-											echo "<tr>";
-				                            echo "<td>Nama Barang</td>";
-				                            echo "<td>Jumlah Pemakaian</td>";
-									        echo "</tr>";
-									        echo "<hr>";
-										    while($row = $result->fetch_assoc()) {
-										        echo "<tr>";
-										        echo "<td>" . $row["nama_barang"] . "</td>";
-										        echo "<td>" . $row["jumlah pemakaian"] . "</td>";
-										        echo "</tr>";
-										    }
-										    echo "</table>";
-										}
+										if (strtotime($end) < strtotime($start))
+											echo "Tanggal tidak valid";
 										else {
-										    echo "tidak ada hasil";
+											$per_periode = "SELECT nama_barang, sum(n_pakai) as 'jumlah pemakaian' FROM t_pemakaian WHERE tanggal<='". $end . "' and tanggal>='" . $start . "' GROUP BY kode_barang";
+											$result = $conn->query($per_periode);
+											echo "<br>";
+											if ($result->num_rows > 0) {
+											    include("fusioncharts.php");
+											    $arrData = array(
+									        	    "chart" => array(
+									                  "caption" => "Pemakaian ATK dari periode " . $start . " sampai " . $end,
+									                  "xAxisName" => "Nama Barang",
+									                  "yAxisName" => "Jumlah Pemakaian"
+									              	)
+									           	);
+
+									           	$arrData["data"] = array();
+											    while($row = mysqli_fetch_array($result)) {
+											        array_push($arrData["data"], array(
+										              	"label" => $row["nama_barang"],
+										              	"value" => $row["jumlah pemakaian"]
+										              	)
+										           	);
+											    }
+											    $chart = new FusionCharts("column2D", "periodChart" , 600, 400, "chart-1", "json", json_encode($arrData));
+											    $chart->render();
+						    ?>
+						    <div id="chart-1"></div>
+						    <?php
+											}
+											else {
+											    echo "tidak ada hasil";
+											}
 										}
 									}
 								}
