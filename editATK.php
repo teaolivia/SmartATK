@@ -31,7 +31,9 @@ and open the template in the editor.
         <script src="js/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
-        <script type = "text/javascript" src="js/validatetambahATK.js"> </script>
+        <script type = "text/javascript" src="js/validatedelete.js"> </script>
+        <script type = "text/javascript" src="js/validateedit.js"> </script>
+        <script type = "text/javascript" src="js/validateKurangStok.js"> </script>
 
     </head>
     <body>
@@ -74,8 +76,10 @@ and open the template in the editor.
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             } 
+
+                            $kode_barang = $_GET["kode_barang"];
         
-                            $sql = "SELECT * FROM t_atk";
+                            $sql = "SELECT * FROM t_atk WHERE kode_barang = '$kode_barang'";
                             $result = $conn->query($sql);
      
                                 echo'
@@ -85,6 +89,10 @@ and open the template in the editor.
                                                 <th>Kode Barang</th>
                                                 <th>Nama Barang</th>
                                                 <th>Stok</th>
+                                                <th>Jumlah Update</th>
+                                                <th>Tambah</th>
+                                                <th>Kurang</th>
+                                                <th>Hapus</th>
                                             </tr>
                                         </thead>
                                 ';
@@ -97,7 +105,12 @@ and open the template in the editor.
                                                         <th>'.$row["kode_barang"].'</th>
                                                         <th>'.$row["nama_barang"].'</th>
                                                         <th>'.$row["stok"].'</th>
-                                                        <th><a href="editATK.php?kode_barang='.$row["kode_barang"].'">Edit</a></th>
+                                                        <form name="editstok" method="Post">
+                                                            <th><input type="text" class="form-control" id="n_stok" name="n_stok" style="width:110px;"></th>
+                                                            <th><button type="submit" class="btn btn-default" formaction="tambahStok.php?kode_barang='.$kode_barang.'" onclick="return validateForm('.$row["stok"].')"><img src="img/plus.png" style="width:24px;height:24px;"/></button></th>
+                                                            <th><button type="submit" class="btn btn-default" formaction="kurangStok.php?kode_barang='.$kode_barang.'" onclick="return validateKurangStokForm('.$row["stok"].')"><img src="img/minus.png" style="width:24px;height:24px;"/></button></th>
+                                                        </form>
+                                                        <th><a href="deleteATK.php?kode_barang='.$kode_barang.'" onclick="return confirmDelete()"><button class="btn btn-default"><img src="img/delete.png" style="width:24px;height:24px;"/></button></a></th>
                                                     </tr>
                                                 </tbody>
                                             ';
@@ -114,31 +127,6 @@ and open the template in the editor.
                         
                     </div>
                     <br>
-                    <form name="tambah_atk" class="form-horizontal" action="tambahATK.php" method="post">
-                        <div class="form-group">
-                            <label for="username" class="col-sm-3 control-label">Kode barang</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="kode_barang" placeholder="Kode barang">
-                            </div>  
-                        </div>
-                        <div class="form-group">
-                            <label for="userID" class="col-sm-3 control-label">Nama barang</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="nama_barang" placeholder="Nama barang">
-                            </div>  
-                        </div>
-                        <div class="form-group">
-                            <label for="category" class="col-sm-3 control-label">Stok</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="stok" placeholder="Stok">
-                            </div>  
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12 col-sm-offset-7 col-sm-2">
-                              <button type="submit" class="btn btn-primary btn-default" onclick="return validateTambahForm()">Tambah Data ATK</button>
-                            </div>
-                          </div>
-                    </form>
                 </div>
             </div>
             <div class="row row-footer">
