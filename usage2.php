@@ -46,15 +46,15 @@
                 $curDate = date("Y-m-d");
                 $new_usage = "INSERT INTO t_pemakaian(`id_user`, `nama_user`, `kategori_user`, `n_pakai`, `kode_barang`, `nama_barang`, `deskripsi`, `tanggal`) VALUES('$user_id', '$user_name', '$category', '$amount', '$atk_code', '$atk_name', '$desc', '$curDate')";
 
-                if (!$conn->query($new_usage)) {
+                if ($conn->query($new_usage)) {
+                    $subtract_stock = "UPDATE t_atk SET stok=stok-'$amount' WHERE kode_barang='$atk_code'";
+                    $conn->query($subtract_stock);
+                }
+                else {
                     echo "<script>
                         alert('Anda hanya boleh memakai atk yang sama 1 kali dalam sehari');
                         window.location.href='usage.php';
                     </script>";
-                }
-                else {
-                    $subtract_stock = "UPDATE t_atk SET stok=stok-'$amount' WHERE kode_barang='$atk_code'";
-                    $conn->query($subtract_stock);
                 }
             }
             else {
