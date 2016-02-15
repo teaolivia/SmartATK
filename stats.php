@@ -116,7 +116,9 @@ and open the template in the editor.
 	                        <h3>Tampilan statistik</h3>
 							<?php
 								if($stat == "stok_min") {
-									$stok_min = "SELECT a.kode_barang, a.nama_barang, stok_minimum FROM (SELECT kode_barang, nama_barang FROM t_atk) AS a JOIN (SELECT kode_barang, sum(n_pakai) as stok_minimum FROM t_pemakaian GROUP BY kode_barang) AS b ON a.kode_barang=b.kode_barang";
+									$limitDate = date("Y-m-d", strtotime("-1 months"));
+									echo "Stok minimum ATK berdasarkan pemakaian setelah " . $limitDate . " (1 bulan lalu)";
+									$stok_min = "SELECT a.kode_barang, a.nama_barang, stok_minimum FROM (SELECT kode_barang, nama_barang FROM t_atk) AS a JOIN (SELECT kode_barang, sum(n_pakai) as stok_minimum FROM t_pemakaian WHERE tanggal>='" . $limitDate . "' GROUP BY kode_barang) AS b ON a.kode_barang=b.kode_barang";
 
 									$result = $conn->query($stok_min);
 									if ($result->num_rows > 0) {
