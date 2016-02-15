@@ -48,6 +48,16 @@ $result13 = mysql_query("SELECT id_user, nama_user, kategori_user, nama_barang, 
 $result14 = mysql_query("SELECT kode_barang, nama_barang, sum(n_pakai) as "
         . "'jumlah pemakaian' FROM `t_pemakaian` WHERE tanggal<x  and tanggal>y "
         . "GROUP BY kode_barang"); // pemakaian ATK per periode
+/*
+* Q009 Data Barang + Stock : SELECT nama_barang, stock FROM t_ATK
+* Q010 Data User : SELECT nama_user, kategori_user FROM t_user
+* Q011 Data Pemakaian : SELECT nama_barang, nama_user, n_pakai FROM t_pemakaian ORDER BY nama_user DESC
+*/
+
+$result15 = mysql_query("SELECT nama_barang, stok FROM t_ATK"); // cek data ATK + stok
+$result16 = mysql_query("SELECT nama_user, kategori_user FROM t_user"); // cek data user
+//$result16 = mysql_query("SELECT * FROM t_user");
+$result17 = mysql_query("SELECT nama_barang, nama_user, n_pakai FROM t_pemakaian ORDER BY nama_user ASC"); // cek data pemakaian
 
 // fetch data dari database
 

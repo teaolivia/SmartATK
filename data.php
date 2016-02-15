@@ -66,16 +66,108 @@ and open the template in the editor.
                             <h2>Lihat Data</h2>
                         </div>
                         <div class="col-xs-12 col-sm-4" style="text-align:center;">
-                            <a href="#"><button class="btn btn-primary">ATK</button></a>
+                            <a href="data.php?type=atk"><button class="btn btn-primary">ATK</button></a>
                         </div>
                         <div class="col-xs-12 col-sm-4" style="text-align:center;">
-                            <a href="#"><button class="btn btn-primary">User</button></a>
+                            <a href="data.php?type=user"><button class="btn btn-primary">User</button></a>
                         </div>
                         <div class="col-xs-12 col-sm-4" style="text-align:center;">
-                            <a href="#"><button class="btn btn-primary">Pemakaian</button></a>
+                            <a href="data.php?type=usage"><button class="btn btn-primary">Pemakaian</button></a>
                         </div>
+
+                        <?php
+                            $servername = "localhost";
+                            $username = "root";
+                            $dbname = "smartatk";
+
+                            $conn = new mysqli($servername, $username, "", $dbname);
+                            
+                            // Check connection
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+
+                            $stat = "def";
+                            if (isset($_GET["type"])) {
+                                $data = $_GET["type"];
+                            }
+                        ?>
+
                         <div class="col-xs-12">
-                            <h3> Data Result Here </h2>
+                            <h3> Data Result Here </h3> 
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <?php
+                                        if ($data=="atk") {
+                                            //$atk = "SELECT nama_barang, stok FROM t_ATK";
+                                            $atk = "SELECT * FROM t_ATK";
+                                            $result = $conn->query($atk);
+
+                                            if ($result->num_rows > 0) {
+                                                echo "<tr>";
+                                                echo "  <td>Kode Barang</td>";
+                                                echo "  <td>Nama Barang</td>";
+                                                echo "  <td>Stok</td>";
+                                                echo "</tr>";
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<tr>";
+                                                    echo "  <td>" . $row["kode_barang"] . "</td>";
+                                                    echo "  <td>" . $row["nama_barang"] . "</td>";
+                                                    echo "  <td>" . $row["stok"] . "</td>";
+                                                    echo "</tr>";
+                                                }
+                                            }
+                                    else {
+                                        echo "Tidak ada hasil";
+                                    }
+                                        }
+                                        else if ($data=="user") {
+                                            //$user= SELECT nama_user, kategori_user FROM t_user");
+                                            $user= "SELECT * FROM t_user";
+                                            $result = $conn->query($user);
+
+                                            if ($result->num_rows > 0) {
+                                                echo "<tr>";
+                                                echo "  <td>ID User</td>";
+                                                echo "  <td>Nama User</td>";
+                                                echo "  <td>Kategori User</td>";
+                                                echo "</tr>";
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<tr>";
+                                                    echo "  <td>" . $row["id_user"] . "</td>";
+                                                    echo "  <td>" . $row["nama_user"] . "</td>";
+                                                    echo "  <td>" . $row["kategori_user"] . "</td>";
+                                                    echo "</tr>";
+                                                }
+                                            }
+
+
+                                        }
+                                        else /*($data="usage")*/ {
+                                            $usage = "SELECT id_pemakaian, nama_barang, nama_user, n_pakai FROM t_pemakaian ORDER BY nama_user ASC";
+                                            $result = $conn->query($usage);
+
+                                            if ($result->num_rows > 0) {
+                                                echo "<tr>";
+                                                echo "  <td>No.</td>";
+                                                echo "  <td>Nama Barang</td>";
+                                                echo "  <td>Pemakai</td>";
+                                                echo "  <td>Jumlah Pakai</td>";
+                                                echo "</tr>";
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<tr>";
+                                                    echo "  <td>" . $row["id_pemakaian"] . "</td>";
+                                                    echo "  <td>" . $row["nama_barang"] . "</td>";
+                                                    echo "  <td>" . $row["nama_user"] . "</td>";
+                                                    echo "  <td>" . $row["n_pakai"] . "</td>";
+                                                    echo "</tr>";
+                                                }
+                                            }
+                                        }
+                                    ?>
+
+                                </table>
+                            </div>
                         </div>
                     </div>
 
