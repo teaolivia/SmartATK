@@ -119,15 +119,14 @@ and open the template in the editor.
 									$stok_min = "SELECT a.kode_barang, a.nama_barang, stok_minimum FROM (SELECT kode_barang, nama_barang FROM t_atk) AS a JOIN (SELECT kode_barang, sum(n_pakai) as stok_minimum FROM t_pemakaian GROUP BY kode_barang) AS b ON a.kode_barang=b.kode_barang";
 
 									$result = $conn->query($stok_min);
-
 									if ($result->num_rows > 0) {
-										echo "<table style='width:100%'>";
-										echo "<tr style='border-bottom:1pt solid black;'>";
+										echo "<div class='table-responsive'>";
+										echo "<table class='table table-striped' style='width:100%'>";
+										echo "<tr>";
 			                            echo "<td>Kode Barang</td>";
 			                            echo "<td>Nama Barang</td>";
 			                            echo "<td>Stok Minimum</td>";
 								        echo "</tr>";
-								        echo "<tr></tr>";
 									    while($row = $result->fetch_assoc()) {
 									        echo "<tr>";
 									        echo "<td>" . $row["kode_barang"] . "</td>";
@@ -137,6 +136,7 @@ and open the template in the editor.
 									        echo "<br>";
 									    }
 									    echo "</table>";
+									    echo "</div>";
 									}
 									else {
 									    echo "tidak ada hasil";
@@ -167,15 +167,15 @@ and open the template in the editor.
 											if ($result->num_rows > 0) {
 												echo "Pemakaian ATK dari periode " . $start . " sampai " . $end . " oleh " . $name;
 												echo "<br><br>";
-												echo "<table style='width:100%'>";
-												echo "<tr style='border-bottom:1pt solid black;'>";
+												echo "<div class='table-responsive'>";
+												echo "<table class='table table-striped' style='width:100%'>";
+												echo "<tr>";
 					                            echo "<td>Nama User</td>";
 					                            echo "<td>Kategori User</td>";
 					                            echo "<td>Nama Barang</td>";
 					                            echo "<td>Jumlah Pemakaian</td>";
 					                            echo "<td>Deskripsi</td>";
 					                            echo "<td>Tanggal</td>";
-										        echo "<tr></tr>";
 											    while($row = $result->fetch_assoc()) {
 											        echo "<tr>";
 											        echo "<td>" . $row["nama_user"] . "</td>";
@@ -187,6 +187,7 @@ and open the template in the editor.
 											        echo "</tr>";
 											    }
 											    echo "</table>";
+											    echo "</div>";
 											}
 											else {
 											    echo "tidak ada hasil";
