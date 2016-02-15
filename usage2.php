@@ -65,44 +65,62 @@ and open the template in the editor.
                     <div class="row row-content">
                         <div class="col-xs-12">
                             <h2>Pemakaian ATK</h2>
-                            <form name="user-record" class="form-horizontal" action="usage2.php" method="post" onsubmit="return validate()">
-                                <div class="form-group">
-                                    <label for="username" class="col-sm-3 control-label">Nama Pengguna</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="username" placeholder="Username">
-                                    </div>  
-                                </div>
-                                <div class="form-group">
-                                    <label for="userID" class="col-sm-3 control-label">Nomor Pengguna</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="userID" placeholder="User ID">
-                                    </div>  
-                                </div>
-                                <div class="form-group">
-                                    <label for="category" class="col-sm-3 control-label">Kategori User</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="Category" placeholder="User Category">
-                                    </div>  
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-xs-12 col-sm-offset-7 col-sm-2">
-                                       
-                                        <button onclick="location.href='usage2.php'" type="submit" class="btn btn-default"><img src="img/submit.png" style="width:24px;height:24px;"/></button>
-                                        
+                                    <div>
+                                        <table style="width: 100%">
+                                         <tr>
+                                            <th>
+                                            ID Barang
+                                            </th>
+                                            <th>
+                                            Nama Barang
+                                            </th>
+                                            <th>
+                                            Tanggal Pinjam
+                                            </th>
+                                            <th>
+                                            Banyak Pinjam
+                                            </th>
+                                        </tr>
+                                    <div contenteditable="true" input type="text"></br>
+                                <tr>
+                                    <td>
+                       
+                                    </td>
+                                    <td>
+                        
+                                    </td>
+                                    <td>
+                        
+                                    </td>
+                                    <td>
+                        
+                                    </td>
+                                    </tr>
                                     </div>
-                                  </div>
-                            </form>
+                                </table>
+       
+                            
+                            
+                            
+                            <script src="pemakaian.js"></script>
+                            <script>
+                                addBarang();
+                            </script>
+                            </div>
+                            <button onclick="addBarang()" type="add" class="btn btn-default"><img src="img/Icon_31-128.png" style="width:24px;height:24px;"/></button> 
+                            <img src="img/confirm.png" type = "submit" style="width:15%;height:15%;left:80px"/>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="row row-footer">
                 <div class ="col-xs-12 col-sm-4">
                     
                 </div>
                 <div class ="col-xs-12 col-sm-4">
                     <p>Sistem Informasi ATK </p>
-                    <p>Sarana dan Prasarana Institut Teknologi Bandung </p>
+                    <p> Sarana dan Prasarana Institut Teknologi Bandung </p>
                 </div>            
                 <div class ="col-xs-12 col-sm-4">
                     <p> Copyright 2016.</br>Sofspot Software House </p>
@@ -110,30 +128,11 @@ and open the template in the editor.
             </div>
         </div>
     </body>
+</html>
 
-    <?php
-   $dbhost = 'localhost';
-   $dbuser = 'root';
-   $dbpass = '';
-   
-   $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-   
-   if(! $conn ) {
-      die('Could not connect: ' . mysql_error());
-   }
-   
-   $sql = 'SELECT kategori_user FROM t_user WHERE nama_user = "$username" and id_user="$userid" ';
-   mysql_select_db('smartatk');
-   $retval = mysql_query( $sql, $conn );
-   
-   if(! $retval ) {
-      die('Could not get data: ' . mysql_error());
-   }
-   
-   while($row = mysql_fetch_assoc($retval)) {
-      echo "{$form['kategori_user']}  <br> ";
-   }
-   
-   echo "Fetched data successfully\n";
-   
-   mysql_close($conn);
+<?php 
+    /*include "backend.php";
+    if (isset(filter_input(INPUT_POST, 'submit'))){
+        $retval1 = \mysql_query($connection, $result7);
+        $retval2 = \mysql_query($connection, $result8);
+    } */
