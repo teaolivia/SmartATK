@@ -19,8 +19,6 @@ and open the template in the editor.
 
         <!-- Latest compiled and minified JavaScript 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-
         -->
         <!-- If you are offline, uncomment this part -->
         <!-- CSS -->
@@ -33,7 +31,7 @@ and open the template in the editor.
         <script src="js/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
-
+        <script type = "text/javascript" src="js/validatePemakaian.js"> </script>
     </head>
     <body>
         <div class="container">
@@ -65,32 +63,60 @@ and open the template in the editor.
                     <div class="row row-content">
                         <div class="col-xs-12">
                             <h2>Pemakaian ATK</h2>
-                            <form name="user-record" class="form-horizontal" action="usage2.php" method="post" onsubmit="return validate()">
+                            <form name="usage_form" id="usage_form" class="form-horizontal" action="usage2.php" method="post" onsubmit="return validateUsage()">
                                 <div class="form-group">
-                                    <label for="username" class="col-sm-3 control-label">Nama Pengguna</label>
+                                    <label for="username" class="col-sm-3 control-label">Nama User</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="username" placeholder="Username">
-                                    </div>  
-                                </div>
-                                <div class="form-group">
-                                    <label for="userID" class="col-sm-3 control-label">Nomor Pengguna</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="userID" placeholder="User ID">
+                                        <input type="text" class="form-control" name="user_name" placeholder="Username">
                                     </div>  
                                 </div>
                                 <div class="form-group">
                                     <label for="category" class="col-sm-3 control-label">Kategori User</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="Category" placeholder="User Category">
-                                    </div>  
+                                        <select name="category" form="usage_form">
+                                        	<option value="Mahasiswa">Mahasiswa</option>
+                                        	<option value="Dosen">Dosen</option>
+                                        	<option value="Lainnya">Lainnya</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="atk_name" class="col-sm-3 control-label">Nama Barang</label>
+                                    <div class="col-sm-6">
+                                        <?php
+									        $servername = "localhost";
+									        $username = "root";
+									        $dbname = "smartatk";
+									        $conn = new mysqli($servername, $username, "", $dbname);
+
+									        $sql = "SELECT nama_barang FROM t_atk WHERE stok>0";
+									        $result = $conn->query($sql);
+											echo "<select name='atk_name' form='usage_form'>";
+									        while ($row = $result->fetch_assoc()) {
+									        	echo "<option value='" . $row["nama_barang"] . "'>" . $row["nama_barang"] . "</option>";
+									        }
+									        echo "</select>";
+									        $conn->close();
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Jumlah Pemakaian</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="amount" placeholder="User Category">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="desc" class="col-sm-3 control-label">Deskripsi</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="desc" placeholder="User Category">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-xs-12 col-sm-offset-7 col-sm-2">
-                                       
-                                        <button onclick="location.href='usage2.php'" type="submit" class="btn btn-default"><img src="img/submit.png" style="width:24px;height:24px;"/></button>
-                                        
+                                        <button type="submit" class="btn btn-default"><img src="img/submit.png" style="width:24px;height:24px;"/></button>
                                     </div>
-                                  </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -98,42 +124,15 @@ and open the template in the editor.
             </div>
             <div class="row row-footer">
                 <div class ="col-xs-12 col-sm-4">
-                    
                 </div>
                 <div class ="col-xs-12 col-sm-4">
                     <p>Sistem Informasi ATK </p>
-                    <p>Sarana dan Prasarana Institut Teknologi Bandung </p>
+                    <p>Sarana dan Prasarana Institut Teknologi Bandung</p>
                 </div>            
                 <div class ="col-xs-12 col-sm-4">
-                    <p> Copyright 2016.</br>Sofspot Software House </p>
+                    <p>Copyright 2016. Softspot Software House</p>
                 </div>
             </div>
         </div>
     </body>
-
-    <?php
-   $dbhost = 'localhost';
-   $dbuser = 'root';
-   $dbpass = '';
-   
-   $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-   
-   if(! $conn ) {
-      die('Could not connect: ' . mysql_error());
-   }
-   
-   $sql = 'SELECT kategori_user FROM t_user WHERE nama_user = "$username" and id_user="$userid" ';
-   mysql_select_db('smartatk');
-   $retval = mysql_query( $sql, $conn );
-   
-   if(! $retval ) {
-      die('Could not get data: ' . mysql_error());
-   }
-   
-   while($row = mysql_fetch_assoc($retval)) {
-      echo "{$form['kategori_user']}  <br> ";
-   }
-   
-   echo "Fetched data successfully\n";
-   
-   mysql_close($conn);
+</html>

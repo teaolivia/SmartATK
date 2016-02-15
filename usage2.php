@@ -1,138 +1,73 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SmartATK</title>
-        <!-- Bootstrap -->
-        <!-- If you are online, or will deploy this to server, uncomment this part
-        <!-- Latest compiled and minified CSS
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <?php
+            $user_name = $_POST["user_name"];
+            $category = $_POST["category"];
+            $atk_name = $_POST["atk_name"];
+            $amount = $_POST["amount"];
+            $desc = $_POST["desc"];
 
-        <!-- Optional theme
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+            $servername = "localhost";
+            $username = "root";
+            $dbname = "smartatk";
 
-        <!-- Latest compiled and minified JavaScript 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-
-        -->
-        <!-- If you are offline, uncomment this part -->
-        <!-- CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/bootstrap-social.css" rel="stylesheet">
-        <link href="css/mystyles.css" rel="stylesheet">
-        <!-- jQuery -->
-        <script src="js/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-
-    </head>
-    <body>
-        <div class="container">
-            <div class ="row row-header">
-                <div class="col-xs-12 col-sm-4 col-sm-offset-8">
-                    <h1 id="title">SmartATK</h1>
-                </div>
-            </div>
-
-            <div class="row row-content">
-                <div class="col-xs-12 col-sm-3">
-                    <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-collapse collapse" id="navbar">
-                        <ul class="nav nav-pills nav-stacked na">
-                            <li><a href="editstock.php">Edit Data Stok</a></li>
-                            <li class="active"><a href="usage.php">Pemakaian ATK</a></li>
-                            <li><a href="data.php">Lihat Data</a></li>
-                            <li><a href="stats.php">Statistik</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-9">
-                    <div class="row row-content">
-                        <div class="col-xs-12">
-                            <h2>Pemakaian ATK</h2>
-                                    <div>
-                                        <table style="width: 100%">
-                                         <tr>
-                                            <th>
-                                            ID Barang
-                                            </th>
-                                            <th>
-                                            Nama Barang
-                                            </th>
-                                            <th>
-                                            Tanggal Pinjam
-                                            </th>
-                                            <th>
-                                            Banyak Pinjam
-                                            </th>
-                                        </tr>
-                                    <div contenteditable="true" input type="text"></br>
-                                <tr>
-                                    <td>
-                       
-                                    </td>
-                                    <td>
-                        
-                                    </td>
-                                    <td>
-                        
-                                    </td>
-                                    <td>
-                        
-                                    </td>
-                                    </tr>
-                                    </div>
-                                </table>
-       
-                            
-                            
-                            
-                            <script src="pemakaian.js"></script>
-                            <script>
-                                addBarang();
-                            </script>
-                            </div>
-                            <button onclick="addBarang()" type="add" class="btn btn-default"><img src="img/Icon_31-128.png" style="width:24px;height:24px;"/></button> 
-                            <img src="img/confirm.png" type = "submit" style="width:15%;height:15%;left:80px"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            $conn = new mysqli($servername, $username, "", $dbname);
             
-            <div class="row row-footer">
-                <div class ="col-xs-12 col-sm-4">
-                    
-                </div>
-                <div class ="col-xs-12 col-sm-4">
-                    <p>Sistem Informasi ATK </p>
-                    <p> Sarana dan Prasarana Institut Teknologi Bandung </p>
-                </div>            
-                <div class ="col-xs-12 col-sm-4">
-                    <p> Copyright 2016.</br>Sofspot Software House </p>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
-<?php 
-    /*include "backend.php";
-    if (isset(filter_input(INPUT_POST, 'submit'))){
-        $retval1 = \mysql_query($connection, $result7);
-        $retval2 = \mysql_query($connection, $result8);
-    } */
+            $query_atk_code = "SELECT kode_barang, stok FROM t_atk WHERE nama_barang='" . $atk_name . "'";
+            $result = $conn->query($query_atk_code);
+
+            while($row = $result->fetch_assoc()) {
+                $atk_code = $row["kode_barang"];
+                $stok = $row["stok"];
+            }
+
+            if ($stok >= $amount) {
+                $query_user_id = "SELECT id_user FROM t_user WHERE nama_user='" . $user_name . "' and kategori_user='" . $category . "'";
+                $result = $conn->query($query_user_id);
+
+                while ($result->num_rows == 0) {
+                    $new_user = "INSERT INTO t_user(`nama_user`,`kategori_user`) VALUES('$user_name', '$category')";
+                    $conn->query($new_user);
+
+                    $query_user_id = "SELECT id_user FROM t_user WHERE nama_user='" . $user_name . "' and kategori_user='" . $category . "'";
+                    $result = $conn->query($query_user_id);
+                }
+
+                while($row = $result->fetch_assoc())
+                    $user_id = $row["id_user"];
+
+                $curDate = date("Y-m-d");
+                $new_usage = "INSERT INTO t_pemakaian(`id_user`, `nama_user`, `kategori_user`, `n_pakai`, `kode_barang`, `nama_barang`, `deskripsi`, `tanggal`) VALUES('$user_id', '$user_name', '$category', '$amount', '$atk_code', '$atk_name', '$desc', '$curDate')";
+
+                if (!$conn->query($new_usage)) {
+                    echo "<script>
+                        alert('Anda hanya boleh memakai atk yang sama 1 kali dalam sehari');
+                        window.location.href='usage.php';
+                    </script>";
+                }
+                else {
+                    $subtract_stock = "UPDATE t_atk SET stok=stok-'$amount' WHERE kode_barang='$atk_code'";
+                    $conn->query($subtract_stock);
+                }
+            }
+            else {
+                echo "<script>
+                        alert('Jumlah pemakaian lebih dari stok');
+                        window.location.href='usage.php';
+                    </script>";
+            }
+            echo "<script>
+                    alert('Transaksi pemakaian berhasil');
+                    window.location.href='usage.php';
+                </script>";
+            $conn->close();
+        ?>
+    </head>
+</html>

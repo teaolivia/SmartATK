@@ -117,7 +117,7 @@ and open the template in the editor.
 							<?php
 								if($stat == "stok_min") {
 									$limitDate = date("Y-m-d", strtotime("-1 months"));
-									echo "Stok minimum ATK berdasarkan pemakaian setelah " . $limitDate . " (1 bulan lalu)";
+									echo "Stok minimum ATK berdasarkan pemakaian setelah " . $limitDate . " (1 bulan lalu)<br>";
 									$stok_min = "SELECT a.kode_barang, a.nama_barang, stok_minimum FROM (SELECT kode_barang, nama_barang FROM t_atk) AS a JOIN (SELECT kode_barang, sum(n_pakai) as stok_minimum FROM t_pemakaian WHERE tanggal>='" . $limitDate . "' GROUP BY kode_barang) AS b ON a.kode_barang=b.kode_barang";
 
 									$result = $conn->query($stok_min);
