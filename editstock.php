@@ -77,18 +77,18 @@ and open the template in the editor.
         
                             $sql = "SELECT * FROM t_atk";
                             $result = $conn->query($sql);
-     
+     							if ($result->num_rows > 0) {
                                 echo'
                                     <table class="table table-condensed">
                                         <thead>
                                             <tr>
                                                 <th>Kode Barang</th>
                                                 <th>Nama Barang</th>
-                                                <th>Stok</th>
+                                                <th>Stok (pcs)</th>
                                             </tr>
                                         </thead>
                                 ';
-                                    if ($result->num_rows > 0) {
+                                    
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
                                             echo'
@@ -128,7 +128,7 @@ and open the template in the editor.
                             </div>  
                         </div>
                         <div class="form-group">
-                            <label for="category" class="col-sm-3 control-label">Stok</label>
+                            <label for="category" class="col-sm-3 control-label">Stok (pcs)</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" name="stok" placeholder="Stok">
                             </div>  

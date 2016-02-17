@@ -67,7 +67,7 @@ and open the template in the editor.
                                 <div class="form-group">
                                     <label for="username" class="col-sm-3 control-label">Nama User</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="user_name" placeholder="Username">
+                                        <input type="text" class="form-control" name="user_name">
                                     </div>  
                                 </div>
                                 <div class="form-group">
@@ -103,13 +103,13 @@ and open the template in the editor.
                                 <div class="form-group">
                                     <label for="amount" class="col-sm-3 control-label">Jumlah Pemakaian</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="amount" placeholder="User Category">
+                                        <input type="text" class="form-control" name="amount">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="desc" class="col-sm-3 control-label">Deskripsi</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="desc" placeholder="User Category">
+                                        <input type="text" class="form-control" name="desc">
                                     </div>
                                 </div>
                                 <div class="form-group">

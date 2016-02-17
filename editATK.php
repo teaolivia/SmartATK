@@ -88,7 +88,7 @@ and open the template in the editor.
                                             <tr>
                                                 <th>Kode Barang</th>
                                                 <th>Nama Barang</th>
-                                                <th>Stok</th>
+                                                <th>Stok (pcs)</th>
                                                 <th>Jumlah Update</th>
                                                 <th>Tambah</th>
                                                 <th>Kurang</th>

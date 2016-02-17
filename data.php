@@ -108,7 +108,7 @@ and open the template in the editor.
                                                 echo "<tr>";
                                                 echo "  <td>Kode Barang</td>";
                                                 echo "  <td>Nama Barang</td>";
-                                                echo "  <td>Stok</td>";
+                                                echo "  <td>Stok (pcs)</td>";
                                                 echo "</tr>";
                                                 while($row = $result->fetch_assoc()) {
                                                     echo "<tr>";
@@ -155,7 +155,7 @@ and open the template in the editor.
                                                 echo "<tr>";
                                                 echo "  <td>Nama Barang</td>";
                                                 echo "  <td>Pemakai</td>";
-                                                echo "  <td>Jumlah Pakai</td>";
+                                                echo "  <td>Jumlah Pakai (pcs)</td>";
                                                 echo "  <td>Deskripsi</td>";
                                                 echo "  <td>Tanggal</td>";
                                                 echo "</tr>";

@@ -127,7 +127,7 @@ and open the template in the editor.
 										echo "<tr>";
 			                            echo "<td>Kode Barang</td>";
 			                            echo "<td>Nama Barang</td>";
-			                            echo "<td>Stok Minimum</td>";
+			                            echo "<td>Stok Minimum (pcs)</td>";
 								        echo "</tr>";
 									    while($row = $result->fetch_assoc()) {
 									        echo "<tr>";
@@ -175,7 +175,7 @@ and open the template in the editor.
 					                            echo "<td>Nama User</td>";
 					                            echo "<td>Kategori User</td>";
 					                            echo "<td>Nama Barang</td>";
-					                            echo "<td>Jumlah Pemakaian</td>";
+					                            echo "<td>Jumlah Pemakaian (pcs)</td>";
 					                            echo "<td>Deskripsi</td>";
 					                            echo "<td>Tanggal</td>";
 											    while($row = $result->fetch_assoc()) {
@@ -224,7 +224,7 @@ and open the template in the editor.
 									        	    "chart" => array(
 									                  "caption" => "Pemakaian ATK dari periode " . $start . " sampai " . $end,
 									                  "xAxisName" => "Nama Barang",
-									                  "yAxisName" => "Jumlah Pemakaian"
+									                  "yAxisName" => "Jumlah Pemakaian (pcs)"
 									              	)
 									           	);
 
